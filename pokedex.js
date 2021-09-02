@@ -1,78 +1,115 @@
-$(document).ready(function(){
-    let endpoint = 'https://pokeapi.co/api/v2/pokemon/'
+document.addEventListener('DOMContentLoaded', function() {
 
-    $('#next').click(function(e){
-        e.preventDefault();
-        $('.pokeCard').html(" ");
-        fetchPokemon();
+	let nextPage = "https://pokeapi.co/api/v2/pokemon/" ;
+	document.querySelector("#next").addEventListener("click",function(e){
+		e.preventDefault();
+        //$(".pokeCard").html(" ")
+
+        fetchCharacters();
     })
 
-    fetchPokemon();
 
-    function fetchPokemon() {
-        $.ajax({
-            url: endpoint,
-            method: 'GET',
-            success: function (response) {
-                endpoint = response.next;
-                console.log(endpoint);
-                response.results.forEach(function (pokemon) {
-                    let list = `<div class='card'>
-                    <div class='card-body'>
-                    <h5 class='card-title'>${pokemon.name}</h5>
-                    <a href='#' url='${pokemon.url}' 
-                    class='btn btn-primary'>quiero saber mas...</a> 
-                    </div>
-                    </div>`
-                    $(".pokeCard").append(list)
+	fetchCharacters();
+
+        function fetchCharacters(){
+            fetch(nextPage)
+
+                .then(function(response){
+                    return response.json();
                 })
-            },
 
-            complete: function () {
-                $('.btn-primary').click(
-                    function (e) {
-                        e.preventDefault();
-                        $('#exampleModal').modal('show');
-                        let data = ($(this).attr('url'));
-                        
-                        $.ajax({
-                            url: data,
-                            method: 'GET',
-                            success: function (response) {
-                                let name = response.name 
-                                let typ ='Types:'
-                                response.types.forEach(function(types){
-                                    typ = typ + ' ' + types.type.name
-                                })
-                                let image = response.sprites.front_shiny
 
-                                let abi = 'Abilities:'
-                                response.abilities.forEach(function (abilities) {
-                                    abi = abi + ' ' + abilities.ability.name
-                                })
-                                let mov = 'Move set:'
-                                response.moves.forEach(function (moves, index) {
-                                    if (index < 5) {
-                                        mov = mov + ' ' + moves.move.name
-                                    }
-                                })
-                                $('#exampleModalLabel').html(name)
-                                $('#pokemonTypes').html(typ)
-                                $('#pokemonAbs').html(abi)
-                                $('#pokemonMoves').html(mov)
-                                $('#pokemonImage').html(` <img src="${image}" alt="">`)
+                .then(function(response){
 
-                            }
+                    nextPage = response.next;
+                    console.log(response);
+                    response.results.forEach(function(char){
+                    
+                    fetch(char.url)
+                        .then(function(response){
+
+                            return response.json();
                         })
-                    }
-                )
-            }
 
-        });
-    }
+                        .then((pokemon)=> {
+                            let chars = `
+                        <div class="col-4 p-3">
+                        <div class="card">
+                        <img src="${pokemon.sprites.front_default}" class="card-img-top" alt="...">
+                        <div class="card-body ">
+                            <h5 class="card-title">${pokemon.name}</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                        
+                        <div class="card-body">
+                            <a href="#" id ="${char.name}" class="btn btn-success">quiero saber mas de este Pokémon!</a>
+                        </div>
+                        </div>
+                        </div> `
+                        console.log(char.name)
+
+                            $('.btn-success').click(
+                                function (e) {
+                                    e.preventDefault();
+                                    $('#exampleModal').modal('show');
+                                    $('#pokemonAbs').html(getAbilities(pokemon))
+                                    $('#pokemonTypes').html(getTypes(pokemon))
+                                    $('#pokemonMoves').html(getMoves(pokemon))
+                                    
+                            })
 
 
+                        
+
+                        // document.querySelector(`#${char.name}`).addEventListener("click",function(e){
+                        //     e.preventDefault();
+                        //     $("#exampleModal").modal("show");
+                            
+                            
+                        // })
 
 
+                        document.querySelector(".pokeCard").insertAdjacentHTML('beforeend',chars)
 
-});
+                        })
+                    })
+
+                    
+                })
+                
+        }
+        function getAbilities(pokemon){
+
+            let abi = 'Abilities:'
+
+            pokemon.abilities.forEach(function (abilities) {
+                abi = abi + ' ' + abilities.ability.name
+            })
+
+            return abi
+        }
+
+        function getTypes(pokemon){
+
+            let typ = 'types:'
+
+            pokemon.types.forEach(function (types) {
+                typ = typ + ' ' + types.type.name
+            })
+
+            return typ
+        }
+
+        function getMoves(pokemon){
+
+            let mov = 'moves:'
+
+            pokemon.moves.forEach(function (moves, index) {
+                if (index < 5) {
+                    mov = mov + ' ' + moves.move.name
+                }
+            })
+            return mov
+        }
+})
+
