@@ -23,33 +23,37 @@
         <!-- PokemonCards -->
 
         <div class="container">
-            <div class="row pokeCard " > 
+            <div class="row pokeCard "> 
                 
             </div>
-            <button id="next" class="nextPoke"> ¡Quiero ver más pokémon! </button>
+            <button id="next-pokemons" class="nextPoke"> ¡Quiero ver más pokémon! </button>
         </div>
 
         <!-- Modal -->
         
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="pokemonTypes">types:</div>
-                            <div id="pokemonAbs">Abilities:</div>
-                            <div id="pokemonMoves">Moves:</div>
-                            <div id="pokemonImage"></div>
-                        </div>
+                        <h5 class="modal-title" id="exampleModalLabel">...</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div id="divmodal__${pokemon.name}">
 
-                        <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            
+                        <div id="pokemonAbs">Abilities:</div>
+                        <div id="pokemonTypes">types:</div>
+                        <div id="pokemonMoves">Moves:</div>
+                        <div id="pokemonImage"></div>
+                
+                    </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#submodal__${pokemon.name}" data-bs-dismiss="modal">
+                        Ver Relaciones de daño
+                    </button>
+                    
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                
                     </div>
                 </div>
             </div>
