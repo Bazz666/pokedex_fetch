@@ -7,3 +7,5 @@ Things you may want to cover:
 * Rails version 5.2.6
 
 * Heroku Link =>  pendiente
+
+revisar el css ( me quedo bonita (:  )
