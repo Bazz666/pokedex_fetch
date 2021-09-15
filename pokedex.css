@@ -1,12 +1,54 @@
 body {
-    background-color: rgb(218, 113, 113);
+    background-color: rgb(238, 79, 51);
+    font-family: 'Roboto', sans-serif;
+    text-decoration-color: black;
+    font-weight: bold;
+    background: linear-gradient(to right, #d4d3dd, #efefbb);
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
 }
 
+.card {
 
 
+    background-color: #eee;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    
+}
 .btn {
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
 }
+.card-header{
+    text-transform: capitalize;
+}
+.modal-title{
+    text-transform: capitalize;
+}
+#pokemonTypes{
+    text-transform: capitalize;
+}
+#pokemonAbs{
+    text-transform: capitalize;
+}
+#pokemonGeneration{
+    text-transform: capitalize;
+}
+#pokemonMoves{
+    text-transform: capitalize;
+}
+
+
 
 .fab{
     color: blanchedalmond;
@@ -14,12 +56,31 @@ body {
     margin-top: 1.5rem;
 }
 
+#pokemonDaños{
+    color: rgba(223, 19, 19, 0.911);
+    text-align: center;
+    text-justify: auto;
+    font-weight: bold;
+}
 
+#pokemonFortalezas{
+    color: rgba(53, 223, 19, 0.911);
+    text-align: center;
+    text-justify: auto;
+    font-weight: bold;
+}
+#exampleModalLabel{
+    
+    text-align: center;
+    text-justify: auto;
+    font-weight: bold;
+}
 
 .nextPoke {
-    background-color:rgb(91, 129, 160);
-    margin-top:1.5rem;
-    
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.8em;
 }
 
 
