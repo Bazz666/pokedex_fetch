@@ -14,7 +14,6 @@ body {
 
 .card {
 
-
     background-color: #eee;
     border-radius: 10px;
     box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
@@ -28,9 +27,14 @@ body {
     padding: 5px 10px;
     border-radius: 10px;
     font-size: 0.8em;
+    color: black;
 }
 .card-header{
     text-transform: capitalize;
+    text-align: center;
+    text-justify: auto;
+    font-weight: bold;
+    font-size: inherit;
 }
 .modal-title{
     text-transform: capitalize;
